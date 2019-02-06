@@ -1,0 +1,47 @@
+body{
+    background-color: black;
+}
+
+.jumbotron{
+    background-image: url("../data/media/rainbowgatherings.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.containerTwo{
+    background-color: #b2beb5;
+    text-align: center;
+    border-radius: 95%;
+    opacity: .8;
+    padding: .09px;
+    box-sizing: border-box;
+}
+
+.glyphicon{
+    color: red;
+}
+
+h1{
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+}
+
+.containerThree{
+    background-color: #b2beb5;
+    width: 80%;
+    padding: .02rem;
+    padding-left: 2rem;
+    margin: auto;
+    border-radius: 2rem;
+    opacity: 0.8;
+}
+
+h2{
+    font-family: 'Varela Round', sans-serif;
+}
+
+button{
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    opacity: .8;
+}
