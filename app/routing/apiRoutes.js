@@ -1,39 +1,43 @@
+var path = require('path');
+
 var festivals = require("../data/festivals.js");
 
 module.exports = function(app) {
+	// console.log('___ENTER apiRoutes.js___');
 
+	app.get("/api/festival", function(req, res) {
+		res.json(festivals);
+	});
 
-app.post('/api/festivals', function(req, res) {
-    var difference = 40;
-    var matchName = '';
-    var matchPhoto = '';
+	app.post("/api/festival", function(req, res) {
+		var userData = req.body;
 
-    festivals.forEach(function(festival) {
-        var matchedScoresArray = [];
-        var totalDifference = 40;
+		var userResponses = userData.scores;
 
-        function add(total, num) {
-            return total + num;
-        }
+		var matchName = "";
+		var matchImage = "";
+		var totalDifference = 10000; 
 
-        for (var i = 0; i < festival.scores.length; i++) {
-            matchedScoresArray.push(Math.abs(parseInt(req.body.scores[i]) - parseInt(festival.scores[i])));
+		for (var i = 0; i < festivals.length; i++) {
+			var diff = 0;
+			for (var j = 0; j < userResponses.length; j++) {
+				diff += Math.abs(festivals[i].scores[j] - userResponses[j]);
+			}
+			// console.log('diff = ' + diff);
 
-        }
+			if (diff < totalDifference) {
+				// console.log('Closest match found = ' + diff);
+				// console.log('Festival name = ' + festivals[i].name);
+				// console.log('Festival image = ' + festivals[i].photo);
 
-            totalDifference = matchedScoresArray.reduce(add, 0);
+				totalDifference = diff;
+				matchName = festivals[i].name;
+				matchImage = festivals[i].photo;
+			}
+		}
 
-        if (totalDifference < difference) {
-            difference = totalDifference;
-            matchName = festival.name;
-            matchPhoto = festival.photo;
-        }
-    });
-        res.json({
-            name: matchName,
-            photo: matchPhoto
-    });
+		festival.push(userData);
 
-        festivals.push(req.body);
-    });
-}
+		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
+	});
+};
