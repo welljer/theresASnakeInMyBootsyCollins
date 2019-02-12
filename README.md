@@ -13,6 +13,6 @@ User will answer 10 questions upon completion of questions results will be provi
 
 ![homePage](https://github.com/welljer/theresASnakeInMyBootsyCollins/blob/master/app/data/media/home.JPG)
 
-![surveyPage](
+![surveyPage](https://github.com/welljer/theresASnakeInMyBootsyCollins/blob/master/app/data/media/survey.JPG)
 
 [link to project](https://safe-wave-41722.herokuapp.com/)
