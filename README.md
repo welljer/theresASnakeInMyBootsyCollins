@@ -9,3 +9,6 @@ Have you ever wondered which music and arts festival might appeal to you (assumi
 * [body-parser](https://github.com/expressjs/body-parser)
 
 ### How it works
+User will answer 10 questions upon completion of questions results will be provided.
+
+[link to project](https://safe-wave-41722.herokuapp.com/)
