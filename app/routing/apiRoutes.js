@@ -1,43 +1,38 @@
-var path = require('path');
+var festivalsData = require("../data/festivals");
 
-var festivals = require("../data/festivals.js");
 
 module.exports = function(app) {
-	// console.log('___ENTER apiRoutes.js___');
+  app.get("/api/festivals", function(req, res) {
+    res.json(festivalsData);
+  });
 
-	app.get("/api/festival", function(req, res) {
-		res.json(festivals);
-	});
+  app.post("/api/festivals", function(req, res) {
+    console.log(req.body.scores);
 
-	app.post("/api/festival", function(req, res) {
-		var userData = req.body;
+    var user = req.body;
 
-		var userResponses = userData.scores;
+    for(var i = 0; i < user.scores.length; i++) {
+      user.scores[i] = parseInt(user.scores[i]);
+    }
 
-		var matchName = "";
-		var matchImage = "";
-		var totalDifference = 10000; 
+    var myBestFriendsParty = 0;
+    var minimumDifference = 40;
 
-		for (var i = 0; i < festivals.length; i++) {
-			var diff = 0;
-			for (var j = 0; j < userResponses.length; j++) {
-				diff += Math.abs(festivals[i].scores[j] - userResponses[j]);
-			}
-			// console.log('diff = ' + diff);
+    for(var i = 0; i < festivalsData.length; i++) {
+      var totalDifference = 0;
+      for(var j = 0; j < festivalsData[i].scores.length; j++) {
+        var difference = Math.abs(user.scores[j] - festivalsData[i].scores[j]);
+        totalDifference += difference;
+      }
 
-			if (diff < totalDifference) {
-				// console.log('Closest match found = ' + diff);
-				// console.log('Festival name = ' + festivals[i].name);
-				// console.log('Festival image = ' + festivals[i].photo);
+      if(totalDifference < minimumDifference) {
+        myBestFriendsParty = i;
+        minimumDifference = totalDifference;
+      }
+    }
 
-				totalDifference = diff;
-				matchName = festivals[i].name;
-				matchImage = festivals[i].photo;
-			}
-		}
+    festivalsData.push(user);
 
-		festival.push(userData);
-
-		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
-	});
+    res.json(festivalsData[myBestFriendsParty]);
+  });
 };
