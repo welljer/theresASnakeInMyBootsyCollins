@@ -11,4 +11,8 @@ Have you ever wondered which music and arts festival might appeal to you (assumi
 ### How it works
 User will answer 10 questions upon completion of questions results will be provided.
 
+![homePage](https://github.com/welljer/theresASnakeInMyBootsyCollins/blob/master/app/data/media/home.JPG)
+
+![surveyPage](
+
 [link to project](https://safe-wave-41722.herokuapp.com/)
